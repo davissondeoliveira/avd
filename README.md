@@ -32,6 +32,9 @@ For Fedora-based systems:
 sudo dnf install freerdp3-x11
 ```
 
+> **Note:** You will need to install (Flatseal)[https://flathub.org/en/apps/com.github.tchx84.Flatseal]. Then enable `Smart Card` permissions for the AVD application.
+
+
 Then:
 
 ```bash
