@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v2.0.2 (2026-10-08)
+
+### Bug Fixes
+
+- Deleted shutil lib
+  ([`fbcb551`](https://github.com/davissondeoliveira/avd/commit/fbcb551331bcf885392bcecb645371b0d6a75035))
+
+
 ## v2.0.1 (2026-10-08)
 
 ### Bug Fixes
