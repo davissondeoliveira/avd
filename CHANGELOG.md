@@ -1,6 +1,20 @@
 # CHANGELOG
 
 
+## v2.0.4 (2026-10-08)
+
+### Bug Fixes
+
+- Added default browser selection and updated readme
+  ([`048a677`](https://github.com/davissondeoliveira/avd/commit/048a677d693e95656fd7fae5e0bab65a75b62810))
+
+- Update file with make
+  ([`309abd5`](https://github.com/davissondeoliveira/avd/commit/309abd5e2acda1e1e4024fad2959f8466c511db3))
+
+- Updated try/except
+  ([`afdab92`](https://github.com/davissondeoliveira/avd/commit/afdab9267888a110e2db83020d2d90c77291d8b6))
+
+
 ## v2.0.3 (2026-10-08)
 
 ### Bug Fixes
