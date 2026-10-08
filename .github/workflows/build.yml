@@ -1,0 +1,51 @@
+name: Build Python Package
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install poetry==2.2.1
+      - run: poetry install --no-interaction
+
+  quality:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install poetry==2.2.1
+      - run: poetry install --no-interaction
+      - run: make black
+      - run: make lint
+      - run: make typecheck
+
+  build:
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install poetry==2.2.1
+      - run: poetry install --no-interaction
+      - run: poetry build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: built-packages
+          path: dist/*.whl
