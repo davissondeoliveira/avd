@@ -22,8 +22,26 @@ Before using this tool, ensure your system has the following configured:
 
 Install the package directly using the provided wheel file:
 
+For Ubuntu/Debian-based systems:
 ```bash
-pip install avd
+sudo apt update
+sudo apt install freerdp3-x11
+```
+For Fedora-based systems:
+```bash
+sudo dnf install freerdp3-x11
+```
+
+Then:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+
+# Upgrade pip and install your package / dependencies
+pip install --upgrade pip
+pip install .
+playwright install
 ```
 
 ## Getting the RDP Configuration File
