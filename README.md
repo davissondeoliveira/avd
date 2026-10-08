@@ -10,13 +10,11 @@ This package provides a wrapper for `xfreerdp` to seamlessly handle authenticati
 
 Before using this tool, ensure your system has the following configured:
 
-* **FreeRDP:** Properly installed `freerdp3-x11`.
+* **FreeRDP:** Properly installed `freerdp3-x11`. (use: `xfreerdp3 /version` to check if you have or not)
 
-* **Smart Card Middleware:** Proper drivers installed (e.g., `pcscd`, `opensc`) to read your CAC/Smart Card.
+* **CAC** and proper drivers installed.
 
 * **Connection File:** A valid AVD `.rdpw` configuration file.
-
-> **Note:** Older 2.x versions of FreeRDP cannot handle Azure Virtual Desktop (AVD) connections because they lack the necessary Azure ARM gateway (/gateway:type:arm) and modern authentication protocols required to parse .rdpw files.
 
 ## Installation
 
@@ -32,7 +30,7 @@ For Fedora-based systems:
 sudo dnf install freerdp3-x11
 ```
 
-> **Note:** You will need to install (Flatseal)[https://flathub.org/en/apps/com.github.tchx84.Flatseal]. Then enable `Smart Card` permissions for the AVD application.
+> **Note:** You will need to install (Flatseal)[https://flathub.org/en/apps/com.github.tchx84.Flatseal] or (option 2)[https://flathub.org/en/setup/Ubuntu]. Then enable `Smart Card` permissions for the AVD application.
 
 
 Then:
@@ -43,7 +41,7 @@ source venv/bin/activate
 
 # Upgrade pip and install your package / dependencies
 pip install --upgrade pip
-pip install .
+pip install avd-x.x.x.zip
 playwright install
 ```
 
@@ -65,19 +63,19 @@ To use this utility, you first need to download your specific connection file fr
 Start an AVD connection using the `start` command.
 
 ```bash
-avd start -u <username> -loc <path_to_rdp_file>
+avd start -u <username> -l <path_to_rdp_file>
 ```
 
 ### Options
 
 * `-u, --username`: Your AVD connection username (required). This should be your official `Army.mil` email address.
 
-* `-loc, --location`: Absolute or relative path to the AVD connection file you downloaded (default: `Army Desktop.rdpw`).
+* `-l, --location`: Absolute or relative path to the AVD connection file you downloaded (default: `Army Desktop.rdpw`).
 
 ### Example
 
 ```bash
-avd start -u john.doe@army.mil -loc "/home/user/Downloads/Army Desktop.rdpw"
+avd start -u john.doe@army.mil -l "/home/user/Downloads/Army Desktop.rdpw"
 ```
 
 ## Authentication Flow
@@ -99,3 +97,12 @@ Once the command is executed, the tool will guide you through the standard DoD a
 ## Support
 
 For technical questions, bug reports, or feature requests, please contact the repository maintainer or open an issue in the project tracker.
+
+
+EXTRA:
+
+Install flatseal:
+sudo apt install flatpak
+sudo apt install gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub com.github.tchx84.Flatseal

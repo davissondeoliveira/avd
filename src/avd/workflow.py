@@ -6,6 +6,7 @@ from typing import cast
 import shutil
 
 import pexpect
+import subprocess
 from playwright.sync_api import sync_playwright
 
 
@@ -18,6 +19,21 @@ def get_xfreerdp_path():
     raise RuntimeError(
         "Neither xfreerdp3 nor xfreerdp is installed. Please install FreeRDP."
     )
+
+def launch_default_browser(p):
+    """Detects the Linux default browser and maps it to Playwright."""
+    try:
+        default_app = subprocess.check_output(
+            ['xdg-settings', 'get', 'default-web-browser'], 
+            text=True
+        ).lower()
+        
+        if 'chrome' in default_app:
+            return p.chromium.launch(channel="chrome", headless=False)
+        else:
+            return p.firefox.launch(headless=False)
+    except Exception:
+        return p.firefox.launch(headless=False)
 
 
 def avd_workflow(location: str, username: str):
@@ -40,6 +56,7 @@ def avd_workflow(location: str, username: str):
         "/smartcard",
         "/clipboard",
         "/sound:sys:pulse",
+        "/cert:ignore",
     ]
 
     print("Starting xfreerdp... waiting for output...")
@@ -49,7 +66,8 @@ def avd_workflow(location: str, username: str):
 
     try:
         with sync_playwright() as p:
-            browser = p.chromium.launch(headless=False)
+
+            browser = launch_default_browser(p)
 
             context = browser.new_context(ignore_https_errors=True)
 
