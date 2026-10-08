@@ -1,6 +1,17 @@
 # CHANGELOG
 
 
+## v2.0.3 (2026-10-08)
+
+### Bug Fixes
+
+- Added get_xfreerdp_path
+  ([`4ba8d60`](https://github.com/davissondeoliveira/avd/commit/4ba8d60ec45d9a1c64ea498085f69f822a1c2e45))
+
+- Pylint issue
+  ([`5aa74eb`](https://github.com/davissondeoliveira/avd/commit/5aa74eb2ed5f58b9ad991a8bfbaa5ae8609dfd5f))
+
+
 ## v2.0.2 (2026-10-08)
 
 ### Bug Fixes
