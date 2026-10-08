@@ -49,3 +49,22 @@ jobs:
         with:
           name: built-packages
           path: dist/*.whl
+
+  publish:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+        
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install poetry==2.2.1
+      - run: poetry install --no-interaction
+      - uses: python-semantic-release/python-semantic-release@master
+        with:
+          github_token: ${{ secrets.GH_PAT }}
