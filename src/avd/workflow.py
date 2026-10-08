@@ -3,11 +3,10 @@
 import sys
 from re import Match
 from typing import cast
+import shutil
 
 import pexpect
 from playwright.sync_api import sync_playwright
-
-import shutil
 
 
 def get_xfreerdp_path():
@@ -17,7 +16,7 @@ def get_xfreerdp_path():
         if path:
             return path
     raise RuntimeError(
-        "Neither xfreerdp3 nor xfreerdp is installed. " "Please install FreeRDP."
+        "Neither xfreerdp3 nor xfreerdp is installed. Please install FreeRDP."
     )
 
 
