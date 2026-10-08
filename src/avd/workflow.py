@@ -4,9 +4,9 @@ import sys
 from re import Match
 from typing import cast
 import shutil
+import subprocess
 
 import pexpect
-import subprocess
 from playwright.sync_api import sync_playwright
 
 
@@ -30,9 +30,8 @@ def launch_default_browser(p):
 
         if "chrome" in default_app:
             return p.chromium.launch(channel="chrome", headless=False)
-        else:
-            return p.firefox.launch(headless=False)
-    except Exception:
+        return p.firefox.launch(headless=False)
+    except (subprocess.CalledProcessError, FileNotFoundError):
         return p.firefox.launch(headless=False)
 
 
