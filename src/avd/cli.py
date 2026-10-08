@@ -4,7 +4,6 @@ CLI for the AVD package.
 
 from argparse import ArgumentParser
 from pathlib import Path
-import shutil
 
 from .workflow import avd_workflow as workflow
 
@@ -64,7 +63,6 @@ def subcmd_start_callback(args):
     """
     Callback to unpack args and initiate the workflow.
     """
-    _check_system_dependencies()
     _check_paths(args.location, args.username)
     workflow(args.location, args.username)
 
@@ -80,17 +78,6 @@ def _check_paths(location: str, username: str):
 
     if not username:
         raise ValueError("Username must be provided.")
-
-
-def _check_system_dependencies():
-    """Verify required system dependencies are installed."""
-    if not shutil.which("xfreerdp"):
-        raise RuntimeError(
-            "xfreerdp is not installed. Install it with:\n"
-            "  Ubuntu/Debian: sudo apt-get install freerdp3-x11\n"
-            "  Fedora/RHEL: sudo dnf install freerdp\n"
-        )
-
 
 def main():
     """Main entry point for the CLI."""
