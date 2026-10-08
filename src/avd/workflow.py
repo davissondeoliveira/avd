@@ -7,11 +7,24 @@ from typing import cast
 import pexpect
 from playwright.sync_api import sync_playwright
 
+import shutil
+
+
+def get_xfreerdp_path():
+    """Finds the available xfreerdp binary on the system."""
+    for binary in ["xfreerdp3", "xfreerdp"]:
+        path = shutil.which(binary)
+        if path:
+            return path
+    raise RuntimeError(
+        "Neither xfreerdp3 nor xfreerdp is installed. " "Please install FreeRDP."
+    )
+
 
 def avd_workflow(location: str, username: str):
     """AVD workflow using xfreerdp and Playwright."""
 
-    command = "xfreerdp"
+    command = get_xfreerdp_path()
     azure_url = (
         "https%3A%2F%2Fwww.wvd.azure.us%2F.default%20openid%20profile"
         "%20offline_access"

@@ -79,6 +79,7 @@ def _check_paths(location: str, username: str):
     if not username:
         raise ValueError("Username must be provided.")
 
+
 def main():
     """Main entry point for the CLI."""
     args = parse_args()
