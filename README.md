@@ -10,7 +10,7 @@ This package provides a wrapper for `xfreerdp` to seamlessly handle authenticati
 
 Before using this tool, ensure your system has the following configured:
 
-* **FreeRDP:** Properly installed `xfreerdp`.
+* **FreeRDP:** Properly installed `freerdp3-x11`.
 
 * **Smart Card Middleware:** Proper drivers installed (e.g., `pcscd`, `opensc`) to read your CAC/Smart Card.
 

@@ -41,7 +41,7 @@ def add_subcmd_start_parser(subparsers):
     )
 
     parser.add_argument(
-        "-loc",
+        "-l",
         "--location",
         type=str,
         default="Army Desktop.rdpw",
@@ -87,7 +87,7 @@ def _check_system_dependencies():
     if not shutil.which("xfreerdp"):
         raise RuntimeError(
             "xfreerdp is not installed. Install it with:\n"
-            "  Ubuntu/Debian: sudo apt-get install freerdp2-x11\n"
+            "  Ubuntu/Debian: sudo apt-get install freerdp3-x11\n"
             "  Fedora/RHEL: sudo dnf install freerdp\n"
         )
 
