@@ -16,6 +16,8 @@ Before using this tool, ensure your system has the following configured:
 
 * **Connection File:** A valid AVD `.rdpw` configuration file.
 
+> **Note:** Older 2.x versions of FreeRDP cannot handle Azure Virtual Desktop (AVD) connections because they lack the necessary Azure ARM gateway (/gateway:type:arm) and modern authentication protocols required to parse .rdpw files.
+
 ## Installation
 
 Install the package directly using the provided wheel file:
