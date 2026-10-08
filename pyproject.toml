@@ -6,7 +6,7 @@ authors = [
     {name = "davisson.f.deoliveira.mil",email = "davisson.f.deoliveira.mil@army.mil"}
 ]
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
     "pexpect (>=4.9.0,<5.0.0)",
     "playwright (>=1.63.0,<2.0.0)",
