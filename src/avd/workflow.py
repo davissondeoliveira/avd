@@ -20,15 +20,15 @@ def get_xfreerdp_path():
         "Neither xfreerdp3 nor xfreerdp is installed. Please install FreeRDP."
     )
 
+
 def launch_default_browser(p):
     """Detects the Linux default browser and maps it to Playwright."""
     try:
         default_app = subprocess.check_output(
-            ['xdg-settings', 'get', 'default-web-browser'], 
-            text=True
+            ["xdg-settings", "get", "default-web-browser"], text=True
         ).lower()
-        
-        if 'chrome' in default_app:
+
+        if "chrome" in default_app:
             return p.chromium.launch(channel="chrome", headless=False)
         else:
             return p.firefox.launch(headless=False)
