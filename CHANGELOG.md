@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.0.0 (2026-10-09)
+
+### Features
+
+- Ubuntu works now. TODO update readme
+  ([`3053069`](https://github.com/davissondeoliveira/avd/commit/30530694dda6482aec766b5daaa878f9d4ff3ea7))
+
+
 ## v2.0.4 (2026-10-08)
 
 ### Bug Fixes
