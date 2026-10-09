@@ -106,3 +106,15 @@ sudo apt install flatpak
 sudo apt install gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.github.tchx84.Flatseal
+
+
+if cac doesnt show:
+1.Ensure you have Native Chrome:Requirement.Do not use the Ubuntu App Center to install Chromium or Firefox. Download and install the official Google Chrome .deb package directly from Google's website so it runs natively on the host.
+2.Install Smartcard and NSS Tools:Terminal.You need the OpenSC smartcard driver and the NSS database management tools. Run this in your terminal:Bashsudo apt-get update
+sudo apt-get install pcscd opensc libnss3-tools
+3.Register the CAC Driver:Terminal.Register the OpenSC driver to your local NSS database so Chrome knows how to read the smartcard. Run these commands:Bashmkdir -p $HOME/.pki/nssdb
+modutil -dbdir sql:$HOME/.pki/nssdb/ -add "OpenSC" -libfile /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
+To verify it worked, run modutil -dbdir sql:$HOME/.pki/nssdb/ -list and ensure "OpenSC" appears in the output.
+1.Create a Dedicated Profile Folder:Terminal.Create a permanent directory on your host machine to store the Playwright Firefox database and session data.Bashmkdir -p ~/.playwright-firefox-profile
+2.Inject the OpenSC Driver:Terminal.Use the NSS tools you installed earlier to register the OpenSC driver into this new folder. Playwright's bundled Firefox will read this database upon launch.Bashmodutil -dbdir sql:$HOME/.playwright-firefox-profile -add "OpenSC" -libfile /usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
+Note: If it prompts you to create a new database password, simply press Enter to leave it blank.

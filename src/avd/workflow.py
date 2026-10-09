@@ -4,6 +4,7 @@ import sys
 from re import Match
 from typing import cast
 import shutil
+import os
 import subprocess
 
 import pexpect
@@ -22,17 +23,31 @@ def get_xfreerdp_path():
 
 
 def launch_default_browser(p):
-    """Detects the Linux default browser and maps it to Playwright."""
+    """Detects the Linux default browser and maps it to a Playwright persistent context."""
     try:
+        # Detect default browser
         default_app = subprocess.check_output(
             ["xdg-settings", "get", "default-web-browser"], text=True
         ).lower()
 
         if "chrome" in default_app:
-            return p.chromium.launch(channel="chrome", headless=False)
-        return p.firefox.launch(headless=False)
+            user_data_dir = os.path.expanduser("~/.config/google-chrome")
+            return p.chromium.launch_persistent_context(
+                user_data_dir=user_data_dir,
+                channel="chrome",
+                headless=False,
+                ignore_https_errors=True,
+            )
+        user_data_dir = os.path.expanduser("~/.playwright-firefox-profile")
+        return p.firefox.launch_persistent_context(
+            user_data_dir=user_data_dir, headless=False, ignore_https_errors=True
+        )
+
     except (subprocess.CalledProcessError, FileNotFoundError):
-        return p.firefox.launch(headless=False)
+        user_data_dir = os.path.expanduser("~/.playwright-firefox-profile")
+        return p.firefox.launch_persistent_context(
+            user_data_dir=user_data_dir, headless=False, ignore_https_errors=True
+        )
 
 
 def avd_workflow(location: str, username: str):
@@ -66,9 +81,8 @@ def avd_workflow(location: str, username: str):
     try:
         with sync_playwright() as p:
 
-            browser = launch_default_browser(p)
-
-            context = browser.new_context(ignore_https_errors=True)
+            context = launch_default_browser(p)
+            page = context.pages[0]
 
             for _ in range(2):
 
@@ -77,7 +91,6 @@ def avd_workflow(location: str, username: str):
 
                 child.expect(r"Paste redirect URL here:\s*")
 
-                page = context.new_page()
                 page.goto(login_link)
 
                 page.wait_for_url("**/nativeclient**", timeout=60000)
@@ -85,9 +98,7 @@ def avd_workflow(location: str, username: str):
                 redirect_url = page.url
                 child.sendline(redirect_url)
 
-                page.close()
-
-            browser.close()
+            context.close()
 
         child.expect(pexpect.EOF, timeout=None)
 
