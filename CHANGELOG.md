@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.1.0 (2026-10-13)
+
+### Features
+
+- Setup python semantic release and update config
+  ([`ade3d66`](https://github.com/davissondeoliveira/avd/commit/ade3d6668ddd1142e72b2f8c70c59b68fb04c43b))
+
+
 ## v3.0.0 (2026-10-09)
 
 ### Features
