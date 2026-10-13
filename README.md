@@ -35,13 +35,8 @@ sudo dnf install freerdp3-x11
 
 Then:
 
-```bash
-python3 -m venv venv
-source venv/bin/activate
-
+```
 # Upgrade pip and install your package / dependencies
-pip install --upgrade pip
-pip install avd-x.x.x.zip
 playwright install
 ```
 

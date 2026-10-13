@@ -31,24 +31,29 @@ def launch_default_browser(p):
         ).lower()
 
         if "chrome" in default_app:
-            user_data_dir = os.path.expanduser("~/.config/google-chrome")
+            # Use a separate profile directory to prevent conflicts with your active Chrome session
+            user_data_dir = os.path.expanduser("~/.playwright-chrome-profile")
             return p.chromium.launch_persistent_context(
                 user_data_dir=user_data_dir,
                 channel="chrome",
                 headless=False,
                 ignore_https_errors=True,
             )
+        
         user_data_dir = os.path.expanduser("~/.playwright-firefox-profile")
         return p.firefox.launch_persistent_context(
-            user_data_dir=user_data_dir, headless=False, ignore_https_errors=True
+            user_data_dir=user_data_dir, 
+            headless=False, 
+            ignore_https_errors=True
         )
 
     except (subprocess.CalledProcessError, FileNotFoundError):
         user_data_dir = os.path.expanduser("~/.playwright-firefox-profile")
         return p.firefox.launch_persistent_context(
-            user_data_dir=user_data_dir, headless=False, ignore_https_errors=True
+            user_data_dir=user_data_dir, 
+            headless=False, 
+            ignore_https_errors=True
         )
-
 
 def avd_workflow(location: str, username: str):
     """AVD workflow using xfreerdp and Playwright."""
