@@ -33,4 +33,7 @@ pytest-cov = "^4.1.0"
 [tool.semantic_release]
 version_pattern = 'version = "{version}"'
 version_variables = ["pyproject.toml:project.version"]
+version_toml = [
+    "pyproject.toml:project.version"
+]
 upload_to_pypi = false
