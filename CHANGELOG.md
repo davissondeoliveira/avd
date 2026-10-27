@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.2.0 (2026-10-27)
+
+### Features
+
+- Updating the setup file
+  ([`adc1406`](https://github.com/davissondeoliveira/avd/commit/adc1406b0191a5e964cfcc2fc79b9f69af8122f0))
+
+
 ## v3.1.0 (2026-10-13)
 
 ### Features
