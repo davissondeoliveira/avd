@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.3.0 (2026-10-28)
+
+### Features
+
+- Enhance AVD setup script for better distro detection and installation process
+  ([`dc58724`](https://github.com/davissondeoliveira/avd/commit/dc587241094c7626d621e0415fdc918097054a1f))
+
+
 ## v3.2.0 (2026-10-27)
 
 ### Features
