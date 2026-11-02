@@ -8,13 +8,26 @@ This package provides a wrapper for `xfreerdp` to seamlessly handle authenticati
 
 ## Prerequisites
 
-Before using this tool, ensure your system has the following configured:
+This section outlines the prerequisites. The `avd_setup.sh` script will install the following dependencies if they are not already present on your system:
 
 * **FreeRDP:** Properly installed `freerdp3-x11`. (use: `xfreerdp3 /version` to check if you have or not)
+
+* **Flatpak:** Ensure Flatpak is installed for managing certain dependencies.
+
+* **Playwright:** Ensure Playwright is installed for browser automation tasks.
+
+You must also have the following:
 
 * **CAC** and proper drivers installed.
 
 * **Connection File:** A valid AVD `.rdpw` configuration file.
+
+How to retrieve the AVD connection file:
+
+1. Log in to the [AVD portal](https://rdweb.wvd.azure.us/arm/webclient/index.html) portal using your official Army account.
+2. Navigate to the "Settings" section and locate the option `Download the rdp file`.
+   <br>![Download RDP File](images/rdp_settings.png)
+3. Select your assigned virtual desktop and it will automatically download the `.rdpw` configuration file to your local machine.
 
 ## Installation
 
