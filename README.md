@@ -32,6 +32,7 @@ How to retrieve the AVD connection file:
 ## Installation
 
 **Quick Install (Recommended):**
+
 Install the package directly using the provided wheel file:
 
 ```bash
