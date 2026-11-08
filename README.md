@@ -31,11 +31,11 @@ How to retrieve the AVD connection file:
 
 ## Installation
 
+**Quick Install (Recommended):**
 Install the package directly using the provided wheel file:
 
 ```bash
-chmod +x avd_setup.sh
-./avd_setup.sh
+curl -O https://raw.githubusercontent.com/davissondeoliveira/avd/main/avd_setup.sh && chmod +x avd_setup.sh && ./avd_setup.sh
 ```
 
 ## Usage
